@@ -1,0 +1,31 @@
+I ran my tests on a virtual machine running Ubuntu.
+The table below summarizes the performance results for the sequential (seq), parallel (par), and optimized (opt) versions of the N-body simulation:
+
+size      seq                   par                 opt
+ 1   17.320960760116577  15.774262428283691  9.82945203781128  
+ 2   17.551862239837646  7.883535385131836   4.04284930229187  
+ 3   17.860658884048462  4.825296878814697   2.5932106971740723  
+ 4   14.6976957321167    4.065532207489014   2.448295831680298  
+
+
+Performance Analysis
+
+Sequential Version (seq):
+
+The sequential runtime remains relatively constant across different process sizes since it does not benefit from parallelism.
+A slight variation in runtime might occur due to system load or cache effects.
+
+Parallel Version (par):
+
+The runtime decreases significantly as the number of processes increases, showing good scalability.
+For size 4, the runtime is about 4.06 seconds, compared to 15.77 seconds for size 1, demonstrating a substantial speedup.
+
+Optimized Version (opt):
+
+The optimized version further reduces runtime compared to the parallel version by leveraging the symmetry in force calculations
+For size 4, the runtime is reduced to 2.45 seconds, which is about 40% faster than the non-optimized parallel version.
+
+Conclusions:
+
+The parallel version is effective but shows diminishing efficiency with increasing process counts due to communication overhead.
+The optimized version outperforms both the sequential and parallel versions, demonstrating the value of algorithmic improvements in addition to parallelism.
